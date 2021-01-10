@@ -1,0 +1,133 @@
+.apexChart {
+    float:left;
+    width:33%;
+    padding:0 20px;
+  }
+
+.uhA{
+  float:left;
+  width:60%;  
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  padding:0 20px;
+}
+.aRow1{
+  float:left;
+  width:100%;  
+  height: 16%;
+}
+
+.uhB{
+  float:right;
+  width:30%;  
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  padding:0 20px;
+}
+
+.uhText{
+  float:left;
+    
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-family: "Roboto";
+  color: white;
+  padding:20px;
+}
+
+.rowBackImage{
+  height: 10%;
+  width:10%;
+  background-image: "%PUBLIC_URL%/Image/rowBackImage.png";
+}
+
+.uhPadding{
+  padding:20px;
+}
+
+.uhBackgroundColor {
+  background-color: #1f8efa;
+  width:80%;
+}
+
+.uhGlobalText{
+  font-size: calc(10px + 2vmin);
+  font-family: "Roboto";
+  color: white;
+}
+
+.uhAvgContactDuration{
+  word-spacing: 1em;
+  padding:0em 0em 0em 1.5em;
+}
+
+.uhAvgContact{
+  word-spacing: 2em;
+  padding:0em 0em 0em 2em;
+}
+
+.streakBackImage{  
+  height: 100;
+  width: 100;
+  background-image: "%PUBLIC_URL%/Image/Streak.png";
+}
+
+.uhConainer{
+  position: relative;
+  text-align: center;
+}
+.uhCentered{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.AppBackground{
+  background-color: #242E42;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.BackgroundImageContainer {
+  position: relative;
+  text-align: center;
+}
+
+.TextCentered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+
+.TextCenteredLeft {
+  position: absolute;
+  top: 50%;  
+  transform: translate(2em);
+}
+
+.EmotIcon{
+  float: left;
+  height: 50px;
+  width: 50px;
+  margin-left:1.5em;
+}
+.TextNextToEmotIcon {
+  font-family:"Bauhaus";
+  font-weight:bold;
+  margin-left:3.9em;
+}

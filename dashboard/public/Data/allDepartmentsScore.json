@@ -1,0 +1,29 @@
+[
+    {
+        "deptID": "BLMC",
+        "logo":"BLMC.png",
+        "score":13,
+        "rank": 2,
+        "gold": 1,
+        "silver": 0,
+        "bronze": 2
+    },
+    {
+        "deptID": "TPWLD",
+        "logo":"TPWLD.png",
+        "score":17,
+        "rank": 1,
+        "gold": 1,
+        "silver": 3,
+        "bronze": 2
+    },
+    {
+        "deptID": "TPMC",
+        "logo":"TPMC.png",
+        "score":12,
+        "rank": 3,
+        "gold": 0,
+        "silver": 2,
+        "bronze": 3
+    }
+]

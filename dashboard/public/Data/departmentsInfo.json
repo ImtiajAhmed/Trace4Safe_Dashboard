@@ -1,0 +1,20 @@
+[
+    {
+        "deptID": "BLMC",
+        "description": "BL Machining",
+        "targetContacts": 50,
+        "logo":"BLMC.png"
+    },
+    {
+        "deptID": "TPWLD",
+        "description": "TP Weld",
+        "targetContacts": 40,
+        "logo":"TPWLD.png"
+    },
+    {
+        "deptID": "TPMC",
+        "description": "TP Machining",
+        "targetContacts": 60,
+        "logo":"TPMC.png"
+    }
+]

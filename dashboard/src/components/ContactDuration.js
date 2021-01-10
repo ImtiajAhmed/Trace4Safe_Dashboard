@@ -121,7 +121,7 @@ class ContactDuration extends React.Component {
     const series = await GetJsonDataAsync(`contactDuration.json`);
     this.setState({ series:series, isLoaded:true });    
     console.log(series);
-  }
+   }
 
   async componentDidMount() {
     await this.fetchData(); 

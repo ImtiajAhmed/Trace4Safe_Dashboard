@@ -23,31 +23,18 @@ class LeaderBoard extends React.Component {
       }]
     };
 
-    global.FindTeamScore = this.FindTeamScore.bind(this); //calls from AvgContact
+   }
+
+  async fetchData() {
+    const series = await GetJsonDataAsync(`allDepartmentsScore.json`);
+    this.setState({ series:series, isLoaded:true }); 
+    
+    this.state.series.sort((a,b)=>b.score-a.score);   
   }
-    
-//array.sort(GetSortOrder("EmployeeName"));
-    async fetchData() {
-        const series = await GetJsonDataAsync(`allDepartmentsScore.json`);
-        this.setState({ series:series, isLoaded:true }); 
-        
-        this.state.series.sort((a,b)=>b.score-a.score);   
-    }
 
 
-
-  FindTeamScore(deptID){  
-    
-    for (let i = 0; i < this.state.series.length; i++)
-      if(deptID === this.state.series[i].deptID)
-        return [this.state.series[i].score, this.state.series[i].rank];            
-    
-    return [-1,-1];
-  };
-    
   async componentDidMount() {
     await this.fetchData();   
-
   }
     
   

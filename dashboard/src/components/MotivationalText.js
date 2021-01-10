@@ -22,7 +22,6 @@ class MotivationalText extends Component {
   async componentWillMount() {
     const motivationalText = await GetJsonDataAsync('motivationalText.json');
     this.setState({ motivationalText });
-
   }
   
   updateInfo(){     

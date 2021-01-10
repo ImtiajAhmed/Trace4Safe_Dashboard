@@ -5,8 +5,11 @@ import Chart from "react-apexcharts";
 import React, {Component} from 'react'
 import {GetJsonDataAsync} from '../api/GetJsonDataAsync';
 import Streak from './Streak'
+import TeamScore from './TeamScore'
 import '../css/UHDashboard.css';
 import '../css/bootstrap.min.css';
+
+global.FindTeamScore = null;
 
 class Contact extends React.Component {
   
@@ -27,7 +30,6 @@ class Contact extends React.Component {
   diffAvgContacts = 0; //avg this wee - avg last week
   diffAvgContactsMsg = ''; //for example 'CONTACTS DECREASED SINCE LAST WEEK';
 
-  currentTeamScoreAndRank = [0,0]; // to get current team score and rank values from the LeaderBoard component which contains team scores for all team
   deptTargetContacts = 0;
   emotionTextColor = '';
   
@@ -178,6 +180,7 @@ class Contact extends React.Component {
     }
   }
 
+  
   async fetchData() 
   { 
     const series = await GetJsonDataAsync(`contact.json`);
@@ -193,6 +196,7 @@ class Contact extends React.Component {
   ProcessData(deptInfo){  
     this.options.annotations.yaxis[0].y = deptInfo.targetContacts; //set the target green line
     this.deptTargetContacts = deptInfo.targetContacts;  // to show the target number
+
     //find the series index of the target department
     this.seriesIndexOfDept = -1;
     for(let i=0; i<this.state.series.length; i++)
@@ -298,10 +302,6 @@ class Contact extends React.Component {
       this.emotionTextColor = "#C17600";
     }
 
-    //global.Streak_Update_Function(thisWeekStreakString, lastWeekStreakString);
-    
-    this.currentTeamScoreAndRank = global.FindTeamScore(deptInfo.deptID);
-
     this.isProcessDone = true;
     this.setState({ deptID:deptInfo.deptID});       
   };
@@ -319,7 +319,6 @@ class Contact extends React.Component {
     }
     if(!this.isProcessDone) return null;
     if(!this.deptIDfound) return <div>Department ID not fund in the dataset...</div>;
-   
       
     return (   
       <div class="container-fluid">
@@ -328,13 +327,8 @@ class Contact extends React.Component {
             <h3 style={{fontFamily:"Goudy Stout"}}> DAILY CONTACTS </h3>
             <h5  style={{fontFamily:"AvenireLTStd-book"}}> {this.latestDate} </h5>
           </div>
-          <div class="col-md-3">
-            <h1 style={{fontFamily:"Algerian", fontWeight:"bolder", fontSize:"3em",textAlign:"center"}}>{this.currentTeamScoreAndRank[0]}</h1>
-            <h5 style={{fontFamily:"AvenireLTStd-book", fontWeight:"bolder", fontSize:"0.7em",textAlign:"center"}}>TEAM SCORE</h5>
-          </div>
-          <div class="col-md-2">
-            <h1 style={{fontFamily:"Algerian", fontWeight:"bolder", fontSize:"3em", textAlign:"center"}}>{this.currentTeamScoreAndRank[1]}</h1>
-            <h5 style={{fontFamily:"AvenireLTStd-book", fontWeight:"bolder", fontSize:"0.7em",textAlign:"center"}}>TEAM RANK</h5>
+          <div class="col-md-5">
+            <TeamScore deptID={this.state.deptID}/>
           </div>
         </div>
         <div class="row">

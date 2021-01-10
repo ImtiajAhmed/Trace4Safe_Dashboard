@@ -10,14 +10,10 @@ import LeaderBoard from './components/LeaderBoard'
 
 import './css/bootstrap.min.css';
 
-
-global.refreshInterval = 5000;
-global.FindTeamScore = null;
-global.CheckAllComponentMonted = [false,false,false,false]; //contact, contactDuration, leaderBoard, motivationalText
+global.refreshInterval = 60000;  //change this value to set the perioric time (in milliseconds), currently it is 1 minute.
 
 class App extends Component {
 
-  
   constructor(props) {
     super(props);
 
@@ -33,27 +29,26 @@ class App extends Component {
     };
   }
 
- 
-
   updateInfo(){      
     this.setState({deptIndex: (this.state.deptIndex + 1) % this.state.departmentsInfo.length});      
   };
-
+  
   waitOnceIntheBeginning() //so that all the other child components get mounted
   {
-    clearInterval(this.intervalForOnce);//clear the interval
-
-    if(this.state.departmentsInfo.length>0){
-      this.setState({deptIndex: 0});
+    if(this.state.departmentsInfo.length>0){      
+      this.setState({deptIndex: 0});        //so that it can render after 2 seconds
     }
-    this.interval = setInterval(this.updateInfo.bind(this), global.refreshInterval);
+
+    clearInterval(this.intervalForOnce);//clear the interval
+    this.interval = setInterval(this.updateInfo.bind(this), global.refreshInterval); //update data interval   
+        
   }
 
   async componentDidMount() {
     const deptInfo = await GetJsonDataAsync(`departmentsInfo.json`);
     this.setState({ departmentsInfo: deptInfo, isLoaded:true });
 
-    this.intervalForOnce = setInterval(this.waitOnceIntheBeginning.bind(this), 1000);
+    this.intervalForOnce = setInterval(this.waitOnceIntheBeginning.bind(this), 1000); // give some time to load all the components 
   }
 
   componentWillUnmount() {
@@ -65,8 +60,7 @@ class App extends Component {
       return <div>Loading....</div>;
     
     if(this.state.deptIndex<0)
-      return <div>Couldn't load data...</div>;
-   
+      return <div>Not yet loaded data or couldn't load data...</div>;
              
     return (
        <div class="container-fluid" className="AppBackground" style={{padding:"3%"}} >
@@ -78,13 +72,14 @@ class App extends Component {
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12">       {/*style={{padding:"2%"}}*/}
+              <div class="col-md-12">      
                 <Contact departmentsInfo={this.state.departmentsInfo[this.state.deptIndex]}/>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <ContactDuration departmentsInfo={this.state.departmentsInfo[this.state.deptIndex]}/>
+                
               </div>
             </div>
           </div>
@@ -104,8 +99,7 @@ class App extends Component {
       </div> 
      
     );
-  }
-  
+  }  
 }
 
 export default App;
